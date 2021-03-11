@@ -1,21 +1,19 @@
 from modules.output import *
 from modules.task_list import *
-from data.task_list import *
 from modules.input import *
-# print_list()
 
-# output.print_menu()
+tasks = [
+]
 
-# print_task_descriptions()
-
-
-#print_menu()
-
+task_check =  input("Do you want to load existing tasks? (y/n) ")
+if task_check.lower() == "y":
+    from data.task_list import tasks
 
 
+
+print_menu()
 while (True):
-    print_menu()
-    option = input("Select an option 1, 2, 3, 4, 5 or (Q)uit: ")
+    option = get_option()
     if (option.lower() == 'q'):
         break
     if option == '1':
@@ -25,20 +23,20 @@ while (True):
     elif option == '3':
         print_list(get_completed_tasks(tasks))
     elif option == '4':
-        description() 
+        description = description() 
         task = get_task_with_description(tasks, description)
         if task != "Task Not Found":
             mark_task_complete(task)
     elif option == '5':
-        time()
+        time = time()
         print_list(get_tasks_taking_longer_than(tasks, time))
     elif option == '6':
-        description()
+        description = description()
         print(get_task_with_description(tasks, description))
     elif option == '7':
-        description()
-        time_taken()
-        task = create_task(description, time_taken)
+        description = input("Enter description: ")
+        time = time_taken()
+        task = create_task(description, time)
         tasks.append(task)
     else:
         print("Invalid Input - choose another option")
